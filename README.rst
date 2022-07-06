@@ -1,6 +1,15 @@
-BeaconTools - Universal beacon scanning
-=======================================
+
+Fork of BeaconTools - Universal beacon scanning (V2.1)
+=====================================================
 |PyPI Package| |Build Status| |Coverage Status| |Requirements Status|
+
+
+| This fork added support for filtering on the beginning of the UUID. 
+| The Ibeacon return string as change also.
+| Thank you Citruz for the great job !
+|
+|
+
 
 A Python library for working with various types of Bluetooth LE Beacons.
 
@@ -91,9 +100,10 @@ Scanner
         print("<%s, %d> %s %s" % (bt_addr, rssi, packet, additional_info))
 
     # scan for all iBeacon advertisements from beacons with the specified uuid 
-    scanner = BeaconScanner(callback, 
-        device_filter=IBeaconFilter(uuid="e5b9e3a6-27e2-4c36-a257-7698da5fc140")
-    )
+    scanner = BeaconScanner(callback,
+                        device_filter=IBeaconFilter(uuid="2332a4c2"),
+                        scan_parameters={"address_type": BluetoothAddressType.PUBLIC}
+                        )
     scanner.start()
     time.sleep(5)
     scanner.stop()
