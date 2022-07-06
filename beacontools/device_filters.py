@@ -17,9 +17,9 @@ class DeviceFilter(object):
 
         found_one = False
         for key, value in filter_props.items():
-            if key in self.properties and value != self.properties[key]:
+            if key in self.properties and not value.startswith(self.properties[key]):
                 return False
-            elif key in self.properties and value == self.properties[key]:
+            elif key in self.properties and value.startswith(self.properties[key]):
                 found_one = True
 
         return found_one
